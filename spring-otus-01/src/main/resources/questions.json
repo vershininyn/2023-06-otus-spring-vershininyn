@@ -1,0 +1,35 @@
+[
+  {
+    "type": "optional",
+    "question": "Are you male or female?",
+    "answers": [
+      "male",
+      "female"
+    ]
+  },
+  {
+    "type": "optional",
+    "question": "What is your favorite color?",
+    "answers": [
+      "red",
+      "green",
+      "blue"
+    ]
+  },
+  {
+    "type": "optional",
+    "question": "What is your favorite animal?",
+    "answers": [
+      "dog",
+      "cat"
+    ]
+  },
+  {
+    "type": "free",
+    "question": "How old are you?"
+  },
+  {
+    "type": "free",
+    "question": "What is your weight?"
+  }
+]
