@@ -4,15 +4,13 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="questionsLoaderUtil" class="ru.otus.spring.util.QuestionFromResourcesLoaderUtil">
+    <bean id="questionsLoaderUtil" class="ru.otus.spring.util.QuestionsFromResourcesLoaderUtil">
         <constructor-arg index="0" value="questions.json"/>
     </bean>
 
-    <bean id="questionsExtractService" class="ru.otus.spring.service.impl.QuestionLoaderServiceImpl">
+    <bean id="questionsExtractService" class="ru.otus.spring.service.impl.QuestionsExtractServiceImpl">
         <constructor-arg index="0" ref="questionsLoaderUtil"/>
     </bean>
 
-    <bean id="questionsLogService" class="ru.otus.spring.service.impl.QuestionConsoleLogServiceImpl">
-        <constructor-arg index="0" ref="questionsExtractService"/>
-    </bean>
+    <bean id="questionsLogService" class="ru.otus.spring.service.impl.QuestionsConsoleLogServiceImpl"/>
 </beans>

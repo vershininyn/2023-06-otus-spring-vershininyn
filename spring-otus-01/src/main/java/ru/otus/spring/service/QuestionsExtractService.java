@@ -4,7 +4,7 @@ import ru.otus.spring.domain.Question;
 
 import java.util.List;
 
-public interface QuestionLoaderService {
+public interface QuestionsExtractService {
     List<Question> getAllQuestions() throws NullPointerException;
 
     List<Question> getAllOptionalQuestions() throws NullPointerException;

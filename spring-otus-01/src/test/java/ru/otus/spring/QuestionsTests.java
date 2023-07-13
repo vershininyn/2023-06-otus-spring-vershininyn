@@ -5,9 +5,9 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import ru.otus.spring.domain.Question;
 import ru.otus.spring.domain.QuestionType;
-import ru.otus.spring.service.QuestionLoaderService;
-import ru.otus.spring.service.impl.QuestionLoaderServiceImpl;
-import ru.otus.spring.util.QuestionFromResourcesLoaderUtil;
+import ru.otus.spring.service.QuestionsExtractService;
+import ru.otus.spring.service.impl.QuestionsExtractServiceImpl;
+import ru.otus.spring.util.QuestionsFromResourcesLoaderUtil;
 
 import java.util.List;
 
@@ -16,11 +16,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class QuestionsTests {
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private static QuestionLoaderService qService;
+    private static QuestionsExtractService qService;
 
     @BeforeClass
     public static void setUp() throws Exception {
-        qService = new QuestionLoaderServiceImpl(new QuestionFromResourcesLoaderUtil("questions.json"));
+        qService = new QuestionsExtractServiceImpl(new QuestionsFromResourcesLoaderUtil("questions.json"));
     }
 
     @Test
