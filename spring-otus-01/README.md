@@ -1,5 +1,24 @@
 Описание/Пошаговая инструкция выполнения домашнего задания:
 
+Важные ремарки:
+
+0. Вместо CSV я использовал Json. 
+1. Написанные тесты успешно проходят.
+2. Имя ресурса с вопросами (CSV-файла) необходимо захардкодить строчкой в XML-файле с контекстом. Вместо этого я поместил вопросы в
+пакет ресурсов и читаю оттуда InputStream.
+3. Приложение является выполняемым.
+
+Запуск из CLI: 
+0. mvn clean compile test package shade:shade
+1. java -jar ./{jar-artifact.jar}
+
+mvn --version
+Apache Maven 3.9.3 (21122926829f1ead511c958d89bd2f672198ae9f)                                        
+Maven home: /home/vyn/.sdkman/candidates/maven/current                                               
+Java version: 17.0.7, vendor: Eclipse Adoptium, runtime: /home/vyn/.sdkman/candidates/java/17.0.7-tem
+Default locale: en, platform encoding: UTF-8                                                         
+OS name: "linux", version: "5.10.16.3-microsoft-standard-wsl2", arch: "amd64", family: "unix"    
+
 Описание задания:
 В ресурсах хранятся вопросы и различные ответы к ним в виде CSV файла (5 вопросов).
 Вопросы могут быть с выбором из нескольких вариантов или со свободным ответом - на Ваше желание и усмотрение.
