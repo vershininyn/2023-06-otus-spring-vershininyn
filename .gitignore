@@ -17,6 +17,9 @@ bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
 
+dependency-reduced-pom.xml
+target/
+
 ### IntelliJ IDEA ###
 .idea/
 *.iws
