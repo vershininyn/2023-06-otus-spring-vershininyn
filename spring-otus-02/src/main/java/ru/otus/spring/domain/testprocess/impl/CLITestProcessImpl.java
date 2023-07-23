@@ -1,4 +1,4 @@
-package ru.otus.spring.domain.testprocess;
+package ru.otus.spring.domain.testprocess.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -6,6 +6,7 @@ import ru.otus.spring.domain.qa.TestAnswer;
 import ru.otus.spring.domain.qa.TestQuestion;
 import ru.otus.spring.domain.student.Student;
 import ru.otus.spring.domain.student.StudentQuestionAnswerPair;
+import ru.otus.spring.domain.testprocess.TestProcess;
 import ru.otus.spring.service.QuestionAnswerPairsExtractService;
 import ru.otus.spring.service.QuestionAnswerPairsLogService;
 import ru.otus.spring.service.QuestionAnswerPairsVerifyService;
@@ -19,7 +20,7 @@ import java.util.Scanner;
 import static ru.otus.spring.domain.qa.QuestionType.optional;
 
 @Component
-public class CLITestProcess implements TestProcess {
+public class CLITestProcessImpl implements TestProcess {
     @Autowired
     private QuestionAnswerPairsExtractService qaExtractService;
 

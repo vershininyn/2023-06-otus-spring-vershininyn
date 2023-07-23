@@ -1,22 +1,34 @@
 package ru.otus.spring.domain.qa;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 import java.util.Objects;
 import java.util.StringJoiner;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class TestAnswer {
-    private String answer;
+    private String answer = "";
 
-    public boolean isEmpty() {
-        return answer.isEmpty();
+    public TestAnswer(String answer) {
+        setAnswer(answer);
+    }
+
+    public TestAnswer setAnswer(String answer) throws IllegalArgumentException {
+        Objects.requireNonNull(answer, "Answer cannot be NULL");
+
+        if (answer.isBlank()) {
+            throw new IllegalArgumentException("Answer cannot be blank");
+        }
+
+        this.answer = answer;
+
+        return this;
+    }
+
+    public boolean isBlank() {
+        return answer.isBlank();
     }
 
     @Override

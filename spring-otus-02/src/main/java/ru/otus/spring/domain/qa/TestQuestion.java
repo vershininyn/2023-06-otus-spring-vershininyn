@@ -5,13 +5,37 @@ import lombok.*;
 import java.util.Objects;
 import java.util.StringJoiner;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Setter
 public class TestQuestion {
     private QuestionType type;
     private String questionString;
+
+    public TestQuestion(QuestionType type, String questionString) {
+        setQuestionType(type);
+        setQuestionString(questionString);
+    }
+
+    public TestQuestion setQuestionType(QuestionType type) {
+        Objects.requireNonNull(type, "Question type cannot be NULL");
+
+        this.type = type;
+
+        return this;
+    }
+
+    public TestQuestion setQuestionString(String questionString) throws IllegalArgumentException
+    {
+        Objects.requireNonNull(questionString, "Question string cannpt be NULL");
+
+        if (questionString.isBlank()) {
+            throw new IllegalArgumentException("Question string cannot be blank");
+        }
+
+        this.questionString = questionString;
+
+        return this;
+    }
 
     @Override
     public String toString() {
@@ -26,8 +50,8 @@ public class TestQuestion {
                 .toString();
     }
 
-    public boolean isEmpty() {
-        return questionString.isEmpty();
+    public boolean isBlank() {
+        return questionString.isBlank();
     }
 
     @Override

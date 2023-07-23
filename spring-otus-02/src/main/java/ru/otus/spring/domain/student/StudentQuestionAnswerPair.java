@@ -18,7 +18,7 @@ public class StudentQuestionAnswerPair {
    public StudentQuestionAnswerPair setQuestion(TestQuestion question) {
       Objects.requireNonNull(question, "Question cannot be NULL");
 
-      if (question.isEmpty()) {
+      if (question.isBlank()) {
          throw new IllegalArgumentException("Question of student cannot be empty");
       }
 
