@@ -2,10 +2,13 @@ package ru.otus.spring.integration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.context.ActiveProfiles;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import ru.otus.spring.domain.qa.TestQuestion;
 import ru.otus.spring.domain.student.StudentQuestionAnswerPair;
 import ru.otus.spring.service.QuestionAnswerPairsExtractService;
@@ -22,6 +25,8 @@ import static ru.otus.spring.domain.qa.QuestionType.free;
 import static ru.otus.spring.domain.qa.QuestionType.optional;
 
 @ActiveProfiles(profiles = "test", value = "test")
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(classes = {})
 public class QuestionAnswerPairsExtractServiceIntegrationTests {
     @Value("${tests.students.csv_resource_filename}")
     private String questionJsonFilename;
