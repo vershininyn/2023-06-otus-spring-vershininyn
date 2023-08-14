@@ -30,7 +30,7 @@ public class QuestionAnswerPairsExtractServiceImpl implements QuestionAnswerPair
     }
 
     @Override
-    public Map<Long, StudentQuestionAnswerPair> getAllQuestionAnswerPairs() throws NullPointerException {
+    public Map<Long, StudentQuestionAnswerPair> getAllQuestionAnswerPairs() {
         return Stream.of(getAllFreeQuestionAnswerPairs(), getAllOptionalQuestionAnswerPairs())
                 .map(Map::entrySet)
                 .flatMap(Collection::stream)
@@ -38,12 +38,12 @@ public class QuestionAnswerPairsExtractServiceImpl implements QuestionAnswerPair
     }
 
     @Override
-    public Map<Long, StudentQuestionAnswerPair> getAllOptionalQuestionAnswerPairs() throws NullPointerException {
+    public Map<Long, StudentQuestionAnswerPair> getAllOptionalQuestionAnswerPairs() {
         return getAllQuestionsByType(optional);
     }
 
     @Override
-    public Map<Long, StudentQuestionAnswerPair> getAllFreeQuestionAnswerPairs() throws NullPointerException {
+    public Map<Long, StudentQuestionAnswerPair> getAllFreeQuestionAnswerPairs() {
         return getAllQuestionsByType(free);
     }
 
@@ -60,7 +60,7 @@ public class QuestionAnswerPairsExtractServiceImpl implements QuestionAnswerPair
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
     }
 
-    private Map<Long, StudentQuestionAnswerPair> lazyLoadAllQuestionAnswerPairsMap() throws NullPointerException {
+    private Map<Long, StudentQuestionAnswerPair> lazyLoadAllQuestionAnswerPairsMap() {
         InputStream jsonIOStream = loadFromResourcesService.loadJsonInputStreamFromResource();
 
         Map<Long, StudentQuestionAnswerPair> map = null;

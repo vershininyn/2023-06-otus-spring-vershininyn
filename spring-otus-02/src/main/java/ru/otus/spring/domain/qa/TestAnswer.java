@@ -15,7 +15,7 @@ public class TestAnswer {
         setAnswer(answer);
     }
 
-    public TestAnswer setAnswer(String answer) throws IllegalArgumentException {
+    public TestAnswer setAnswer(String answer) {
         Objects.requireNonNull(answer, "Answer cannot be NULL");
 
         if (answer.isBlank()) {
@@ -28,6 +28,8 @@ public class TestAnswer {
     }
 
     public boolean isBlank() {
+        Objects.requireNonNull(answer, "Answer cannot be NULL");
+
         return answer.isBlank();
     }
 

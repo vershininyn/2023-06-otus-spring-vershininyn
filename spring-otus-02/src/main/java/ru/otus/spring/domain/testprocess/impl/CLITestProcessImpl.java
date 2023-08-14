@@ -1,6 +1,5 @@
 package ru.otus.spring.domain.testprocess.impl;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.otus.spring.domain.qa.TestAnswer;
 import ru.otus.spring.domain.qa.TestQuestion;
@@ -21,16 +20,25 @@ import static ru.otus.spring.domain.qa.QuestionType.optional;
 
 @Component
 public class CLITestProcessImpl implements TestProcess {
-    @Autowired
+
     private QuestionAnswerPairsExtractService qaExtractService;
 
-    @Autowired
+
     private QuestionAnswerPairsVerifyService verifyService;
 
-    @Autowired
+
     private QuestionAnswerPairsLogService logService;
 
-    public void runTestProcessAndLogResult() throws Exception {
+    public CLITestProcessImpl(QuestionAnswerPairsExtractService qaExtractService,
+                              QuestionAnswerPairsVerifyService verifyService,
+                              QuestionAnswerPairsLogService logService) {
+        this.qaExtractService = qaExtractService;
+        this.verifyService = verifyService;
+        this.logService = logService;
+    }
+
+    @Override
+    public void runTestProcessAndLogResult() {
         try (final InputStream inStream = System.in;
              final Scanner scanner = new Scanner(inStream)) {
             Student student = getStudentFromCLI(scanner);
@@ -42,6 +50,9 @@ public class CLITestProcessImpl implements TestProcess {
                     = verifyService.isStudentSuccessfullyPassTheTest(actualQuestionAnswerPairs, trueQuestionAnswerPairs);
 
             logService.logAllInformation(student, studentIsPassedTests);
+        }
+        catch(Exception ex) {
+            throw new IllegalStateException(ex);
         }
     }
 

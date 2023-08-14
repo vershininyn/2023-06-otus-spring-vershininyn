@@ -1,11 +1,13 @@
 package ru.otus.spring.service.impl;
 
+import org.springframework.stereotype.Service;
 import ru.otus.spring.domain.student.Student;
 import ru.otus.spring.service.QuestionAnswerPairsLogService;
 
 import java.util.Objects;
 import java.util.StringJoiner;
 
+@Service
 public class QuestionAnswerPairsConsoleLogServiceImpl implements QuestionAnswerPairsLogService {
     @Override
     public void logAllInformation(Student student, boolean studentIsSuccessPassTests) {

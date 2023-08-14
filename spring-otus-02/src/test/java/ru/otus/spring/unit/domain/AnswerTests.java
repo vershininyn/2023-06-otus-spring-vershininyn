@@ -20,7 +20,7 @@ import static org.mockito.Mockito.*;
 public class AnswerTests {
     @ParameterizedTest
     @CsvSource(value = {"100.0"})
-    public void answerObjShouldHaveCorrectAllArgsConstructor(final String answerStr) {
+    public void shouldHaveCorrectAllArgsConstructor(final String answerStr) {
         final TestAnswer answer = getWithSettingsTestAnswerOneArgs(answerStr);
 
         given(answer.getAnswer()).willReturn(answerStr);
@@ -38,7 +38,7 @@ public class AnswerTests {
 
     @ParameterizedTest
     @EmptySource
-    public void answerObjShouldCorrectlyHandleExceptionWhenUsingAllArgsConstructorWhenAnswerStringIsEmpty(final String answerStr) {
+    public void shouldCorrectlyHandleExceptionWhenUsingAllArgsConstructorWhenAnswerStringIsEmpty(final String answerStr) {
         assertThatThrownBy(() -> {
             try {
                 getWithSettingsTestAnswerOneArgs(answerStr);
@@ -52,7 +52,7 @@ public class AnswerTests {
 
     @ParameterizedTest
     @NullSource
-    public void answerObjShouldCorrectlyHandleExceptionWhenUsingAllArgsConstructorWhenAnswerStringIsNull(final String answerStr) {
+    public void shouldCorrectlyHandleExceptionWhenUsingAllArgsConstructorWhenAnswerStringIsNull(final String answerStr) {
         assertThatThrownBy(() -> {
             try {
                 getWithSettingsTestAnswerOneArgs(answerStr);
@@ -66,7 +66,7 @@ public class AnswerTests {
 
     @ParameterizedTest
     @EmptySource
-    public void answerObjShouldHaveCorrectNoArgsConstructor(final String answerStr) {
+    public void shouldHaveCorrectNoArgsConstructor(final String answerStr) {
         final TestAnswer answer = getWithSettingsTestAnswerNoArgs();
 
         given(answer.getAnswer()).willReturn(answerStr);
@@ -84,9 +84,10 @@ public class AnswerTests {
 
     @ParameterizedTest
     @EmptySource
-    public void answerObjShouldCorrectlyHandleExceptionWhenUsingNoArgsConstructorWhenAnswerStringIsEmpty(final String answerStr) {
+    public void shouldCorrectlyHandleExceptionWhenUsingNoArgsConstructorWhenAnswerStringIsEmpty(final String answerStr) {
         assertThatThrownBy(() -> {
             try {
+                // check the set method
                 getWithSettingsTestAnswerOneArgs(answerStr);
             } catch (final MockitoException ex) {
                 throw new IllegalArgumentException("Answer cannot be blank");
@@ -98,7 +99,7 @@ public class AnswerTests {
 
     @ParameterizedTest
     @NullSource
-    public void answerObjShouldCorrectlyHandleExceptionWhenUsingNoArgsConstructorWhenAnswerStringIsNull(final String answerStr) {
+    public void shouldCorrectlyHandleExceptionWhenUsingNoArgsConstructorWhenAnswerStringIsNull(final String answerStr) {
         assertThatThrownBy(() -> {
             try {
                 getWithSettingsTestAnswerOneArgs(answerStr);
@@ -112,7 +113,7 @@ public class AnswerTests {
 
     @ParameterizedTest
     @CsvSource(value = {"100.0"})
-    public void answerObjShouldHaveCorrectAnswerSetter(String answerStr) {
+    public void shouldHaveCorrectAnswerSetter(String answerStr) {
         final TestAnswer answer = getWithSettingsTestAnswerOneArgs(answerStr);
 
         given(answer.setAnswer(answerStr)).willReturn(answer);
@@ -133,7 +134,7 @@ public class AnswerTests {
     }
 
     @Test
-    public void answerObjShouldBeBlank() {
+    public void shouldBeBlank() {
         final TestAnswer answer = getWithSettingsTestAnswerNoArgs();
 
         given(answer.isBlank()).willReturn(true);
@@ -145,7 +146,7 @@ public class AnswerTests {
 
     @ParameterizedTest
     @CsvSource(value = {"2.0;Answer: {answer =2.0}"}, delimiter = ';')
-    public void answerObjShouldHaveCorrectlyToStringMethod(String answerStr, String toStringCorrectResult) {
+    public void shouldHaveCorrectlyToStringMethod(String answerStr, String toStringCorrectResult) {
         final TestAnswer answer = getWithSettingsTestAnswerOneArgs(answerStr);
 
         given(answer.getAnswer()).willReturn(answerStr);

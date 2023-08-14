@@ -9,7 +9,7 @@ import java.util.StringJoiner;
 @Getter
 public class TestQuestion {
     private QuestionType type;
-    private String questionString;
+    private String questionString = "";
 
     public TestQuestion(QuestionType type, String questionString) {
         setQuestionType(type);
@@ -24,9 +24,8 @@ public class TestQuestion {
         return this;
     }
 
-    public TestQuestion setQuestionString(String questionString) throws IllegalArgumentException
-    {
-        Objects.requireNonNull(questionString, "Question string cannpt be NULL");
+    public TestQuestion setQuestionString(String questionString) {
+        Objects.requireNonNull(questionString, "Question string cannot be NULL");
 
         if (questionString.isBlank()) {
             throw new IllegalArgumentException("Question string cannot be blank");
@@ -51,6 +50,8 @@ public class TestQuestion {
     }
 
     public boolean isBlank() {
+        Objects.requireNonNull(questionString, "Question string cannot be NULL");
+
         return questionString.isBlank();
     }
 

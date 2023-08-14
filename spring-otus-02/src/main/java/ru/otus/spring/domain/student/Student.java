@@ -17,7 +17,7 @@ public class Student {
         setSecondName(secondName);
     }
 
-    public Student setFirstName(String firstName) throws IllegalArgumentException{
+    public Student setFirstName(String firstName) {
         checkStudentSomeName(firstName, "first name");
 
         this.firstName = firstName;
@@ -25,7 +25,7 @@ public class Student {
         return this;
     }
 
-    public Student setSecondName(String secondName) throws IllegalArgumentException{
+    public Student setSecondName(String secondName) {
         checkStudentSomeName(secondName, "second name");
 
         this.secondName = secondName;
@@ -34,6 +34,9 @@ public class Student {
     }
 
     public boolean isBlank() {
+        Objects.requireNonNull(getFirstName(), "The first name cannot be NULL");
+        Objects.requireNonNull(getSecondName(), "The second name cannot be NULL");
+
         return (getFirstName().isBlank()) && (getSecondName().isBlank());
     }
 
@@ -63,7 +66,7 @@ public class Student {
         return Objects.hash(firstName, secondName);
     }
 
-    private void checkStudentSomeName(String name, String nameType) throws IllegalArgumentException {
+    private void checkStudentSomeName(String name, String nameType) {
         Objects.requireNonNull(name, String.format("Student %s cannot be NULL", nameType));
 
         if (name.isBlank()) {

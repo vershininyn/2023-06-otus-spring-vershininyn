@@ -19,7 +19,7 @@ public class QuestionAnswerPairsVerifyServiceImpl implements QuestionAnswerPairs
 
     @Override
     public boolean isStudentSuccessfullyPassTheTest(Map<Long, StudentQuestionAnswerPair> actualQuestionAnswerPairs,
-                                                    Map<Long, StudentQuestionAnswerPair> trueQuestionAnswersPairs) throws Exception {
+                                                    Map<Long, StudentQuestionAnswerPair> trueQuestionAnswersPairs) {
         Objects.requireNonNull(actualQuestionAnswerPairs, "The actual map cannot be NULL");
         Objects.requireNonNull(trueQuestionAnswersPairs, "The true map cannot be NULL");
 
