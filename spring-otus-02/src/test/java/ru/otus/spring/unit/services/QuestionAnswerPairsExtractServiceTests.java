@@ -2,12 +2,15 @@ package ru.otus.spring.unit.services;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import ru.otus.spring.Main;
 import ru.otus.spring.config.QuestionAnswerPairsFromResourceLoaderServiceConfiguration;
 import ru.otus.spring.config.QuestionAnswerPairsVerifyServiceConfiguration;
 import ru.otus.spring.domain.student.StudentQuestionAnswerPair;
@@ -28,10 +31,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class QuestionAnswerPairsExtractServiceTests {
     private ObjectMapper qMapper = new ObjectMapper();
 
-    private QuestionAnswerPairsExtractService extractServiceImpl;
+    private static QuestionAnswerPairsExtractService extractServiceImpl;
 
-    public QuestionAnswerPairsExtractServiceTests(QuestionAnswerPairsExtractService extractService) {
-        this.extractServiceImpl = extractService;
+    @BeforeAll
+    public static void beforeAll() {
+        AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Main.class);
+
+        extractServiceImpl = context.getBean(QuestionAnswerPairsExtractService.class);
     }
 
     @Test
@@ -39,7 +45,7 @@ public class QuestionAnswerPairsExtractServiceTests {
         try (InputStream qInStream
                      = QuestionAnswerPairsExtractServiceTests.class.getClassLoader().getResourceAsStream("questions-test.json")) {
 
-            Map<Long, StudentQuestionAnswerPair> trueQuestionAnswerPairsMap = qMapper.readValue(qInStream, new TypeReference<>() {}),
+            final Map<Long, StudentQuestionAnswerPair> trueQuestionAnswerPairsMap = qMapper.readValue(qInStream, new TypeReference<>() {}),
                     actualQuestionAnswerPairsMap = extractServiceImpl.getAllQuestionAnswerPairs();
 
             /**
@@ -52,7 +58,7 @@ public class QuestionAnswerPairsExtractServiceTests {
 
             assertEquals(trueQuestionAnswerPairsMap.size(), actualQuestionAnswerPairsMap.size());
 
-            Set<Long> trueKeySet = trueQuestionAnswerPairsMap.keySet(), // A
+            final Set<Long> trueKeySet = trueQuestionAnswerPairsMap.keySet(), // A
                     actualKeySet = actualQuestionAnswerPairsMap.keySet(); // B
 
             // |A - B| > 0 ???
