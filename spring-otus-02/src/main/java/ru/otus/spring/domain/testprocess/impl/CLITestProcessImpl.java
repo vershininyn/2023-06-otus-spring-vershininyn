@@ -7,7 +7,6 @@ import ru.otus.spring.domain.student.Student;
 import ru.otus.spring.domain.student.StudentQuestionAnswerPair;
 import ru.otus.spring.domain.testprocess.TestProcess;
 import ru.otus.spring.service.QuestionAnswerPairsExtractService;
-import ru.otus.spring.service.QuestionAnswerPairsLogService;
 import ru.otus.spring.service.QuestionAnswerPairsVerifyService;
 
 import java.io.InputStream;
@@ -27,21 +26,18 @@ public class CLITestProcessImpl implements TestProcess {
     private QuestionAnswerPairsVerifyService verifyService;
 
 
-    private QuestionAnswerPairsLogService logService;
+
 
     public CLITestProcessImpl(QuestionAnswerPairsExtractService qaExtractService,
-                              QuestionAnswerPairsVerifyService verifyService,
-                              QuestionAnswerPairsLogService logService) {
+                              QuestionAnswerPairsVerifyService verifyService) {
         this.qaExtractService = qaExtractService;
         this.verifyService = verifyService;
-        this.logService = logService;
     }
 
-    @Override
-    public void runTestProcessAndLogResult() {
+    public Student runTestProcess() {
         try (final InputStream inStream = System.in;
              final Scanner scanner = new Scanner(inStream)) {
-            Student student = getStudentFromCLI(scanner);
+            Student student = getStudentFromCLI(scanner, false);
 
             final Map<Long, StudentQuestionAnswerPair> trueQuestionAnswerPairs = qaExtractService.getAllOptionalQuestionAnswerPairs(),
                     actualQuestionAnswerPairs = getActualQuestionAnswerPairs(trueQuestionAnswerPairs, scanner);
@@ -49,7 +45,9 @@ public class CLITestProcessImpl implements TestProcess {
             boolean studentIsPassedTests
                     = verifyService.isStudentSuccessfullyPassTheTest(actualQuestionAnswerPairs, trueQuestionAnswerPairs);
 
-            logService.logAllInformation(student, studentIsPassedTests);
+            student.setPassedTest(studentIsPassedTests);
+
+            return student;
         }
         catch(Exception ex) {
             throw new IllegalStateException(ex);
@@ -76,7 +74,7 @@ public class CLITestProcessImpl implements TestProcess {
         return actualQuestionAnswerPairs;
     }
 
-    private Student getStudentFromCLI(final Scanner scanner) {
+    private Student getStudentFromCLI(final Scanner scanner, boolean isStudentPassTheTests) {
         Objects.requireNonNull(scanner, "Scanner cannot be NULL");
 
         String firstName = null, secondName = null;
@@ -97,6 +95,6 @@ public class CLITestProcessImpl implements TestProcess {
 
         secondName = scanner.nextLine();
 
-        return new Student(firstName, secondName);
+        return new Student(firstName, secondName, isStudentPassTheTests);
     }
 }

@@ -10,7 +10,7 @@ import java.util.StringJoiner;
 @Service
 public class QuestionAnswerPairsConsoleLogServiceImpl implements QuestionAnswerPairsLogService {
     @Override
-    public void logAllInformation(Student student, boolean studentIsSuccessPassTests) {
+    public void logAllInformation(Student student) {
         Objects.requireNonNull(student);
 
         String log = (new StringJoiner("", "", ""))
@@ -18,7 +18,7 @@ public class QuestionAnswerPairsConsoleLogServiceImpl implements QuestionAnswerP
                 .add(student.toString())
                 .add("\r\n")
                 .add("The tests is passed: ")
-                .add(String.valueOf(studentIsSuccessPassTests))
+                .add(String.valueOf(student.isPassedTest()))
                 .toString();
 
         System.out.println(log);

@@ -1,20 +1,28 @@
 package ru.otus.spring.domain.student;
 
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.Objects;
 import java.util.StringJoiner;
 
 @NoArgsConstructor
 @Getter
+@EqualsAndHashCode
 public class Student {
     private String firstName = "";
     private String secondName = "";
 
-    public Student(String firstName, String secondName) {
+    @Setter
+    private boolean isPassedTest = false;
+    public Student(String firstName,
+                   String secondName,
+                   boolean isPassedTest) {
         setFirstName(firstName);
         setSecondName(secondName);
+        setPassedTest(isPassedTest);
     }
 
     public Student setFirstName(String firstName) {
@@ -53,18 +61,18 @@ public class Student {
                 .toString();
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Student student = (Student) o;
-        return Objects.equals(firstName, student.firstName) && Objects.equals(secondName, student.secondName);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(firstName, secondName);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Student student = (Student) o;
+//        return Objects.equals(firstName, student.firstName) && Objects.equals(secondName, student.secondName);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(firstName, secondName);
+//    }
 
     private void checkStudentSomeName(String name, String nameType) {
         Objects.requireNonNull(name, String.format("Student %s cannot be NULL", nameType));
