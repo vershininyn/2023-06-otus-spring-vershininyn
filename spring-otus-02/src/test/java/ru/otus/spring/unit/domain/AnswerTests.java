@@ -19,7 +19,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class AnswerTests {
     @ParameterizedTest
-    @CsvSource(value = {"100.0"})
+    @CsvSource(value = {"100"})
     public void shouldHaveCorrectAllArgsConstructor(final String answerStr) {
         final TestAnswer answer = getWithSettingsTestAnswerOneArgs(answerStr);
 

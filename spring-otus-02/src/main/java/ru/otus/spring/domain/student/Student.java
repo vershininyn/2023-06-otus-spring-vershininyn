@@ -14,9 +14,9 @@ import java.util.StringJoiner;
 public class Student {
     private String firstName = "";
     private String secondName = "";
-
     @Setter
     private boolean isPassedTest = false;
+
     public Student(String firstName,
                    String secondName,
                    boolean isPassedTest) {
@@ -50,7 +50,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return (new StringJoiner("","",""))
+        return (new StringJoiner("", "", ""))
                 .add("Student {")
                 .add("firstName =")
                 .add(firstName)
