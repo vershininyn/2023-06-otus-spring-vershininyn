@@ -1,0 +1,48 @@
+{
+  "0": {
+    "question": {
+      "type": "optional",
+      "questionString": "How much is 1.0 + 1.0?"
+    },
+    "answer": {
+      "answer": "2.0"
+    }
+  },
+  "1": {
+    "question": {
+      "type": "optional",
+      "questionString": "How much is 3.0 - 5.0?"
+    },
+    "answer": {
+      "answer": "-2.0"
+    }
+  },
+  "2": {
+    "question": {
+      "type": "optional",
+      "questionString": "How much is 100.0*2.0?"
+    },
+    "answer": {
+      "answer": "200.0"
+    }
+  },
+  "3": {
+    "question": {
+      "type": "optional",
+      "questionString": "How much is 100.0/2.0?"
+    },
+    "answer": {
+      "answer": "50.0"
+    }
+  },
+  "4": {
+    "question": {
+      "type": "free",
+      "questionString": "It's free question"
+    },
+    "answer": {
+      "answer": "free-answer"
+    }
+  }
+}
+
